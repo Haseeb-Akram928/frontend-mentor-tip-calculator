@@ -5,7 +5,6 @@ export default function Input({
   setBillAmount,
   numOfPeople,
   setNumOfPeople,
-  customTip,
   setCustomTip,
   customSelected,
   setCustomSelected,
@@ -35,7 +34,7 @@ export default function Input({
         <p>Select Tip %</p>
         <div className="tips">
           {[5, 10, 15, 25, 50].map((percent) => (
-            <div
+            <button
               className={`tip-percentage ${
                 percent === tipPercentage ? "selected" : ""
               }`}
@@ -46,7 +45,7 @@ export default function Input({
               }}
             >
               {percent}%
-            </div>
+            </button>
           ))}
           <div>
             {customSelected ? (
@@ -59,7 +58,10 @@ export default function Input({
                 }}
               />
             ) : (
-              <div
+              <button
+                style={{
+                  display: "inline-block",
+                }}
                 className="tip-percentage special"
                 onClick={() => {
                   setCustomSelected(true);
@@ -67,21 +69,30 @@ export default function Input({
                 }}
               >
                 Custom
-              </div>
+              </button>
             )}
           </div>
         </div>
       </div>
 
       <div className="input-container">
-        <label htmlFor="bill" className="color-grey-500">
-          Number of People
-        </label>
-        <div className="bill-wrapper">
+        <div className="bill-text">
+          <label htmlFor="numberofpeople" className="color-grey-500">
+            Number of People
+          </label>
+          {parseFloat(numOfPeople) === 0 && (
+            <p className="error-text">Can't by zero</p>
+          )}
+        </div>
+        <div
+          className={`bill-wrapper ${
+            parseFloat(numOfPeople) === 0 ? "error" : ""
+          }`}
+        >
           <img src={personIcon} alt="person icon" className="icon" />
           <input
             type="number"
-            id="bill"
+            id="numberofpeople"
             className="input-field"
             placeholder="0"
             value={numOfPeople}

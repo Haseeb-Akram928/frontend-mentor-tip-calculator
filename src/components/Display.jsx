@@ -1,4 +1,10 @@
-export default function Display({ tipPerPerson, billPerPerson, onReset }) {
+export default function Display({
+  tipPerPerson,
+  billPerPerson,
+  onReset,
+  people,
+  bill,
+}) {
   console.log(tipPerPerson, billPerPerson);
   return (
     <div className="display-container">
@@ -23,7 +29,13 @@ export default function Display({ tipPerPerson, billPerPerson, onReset }) {
           </p>
         </div>
       </div>
-      <button className="btn uppercase" onClick={onReset}>
+      <button
+        className={`btn uppercase ${
+          bill <= 0 || people <= 0 ? "disabled" : ""
+        }`}
+        onClick={onReset}
+        disabled={bill <= 0 || people <= 0}
+      >
         Reset
       </button>
     </div>

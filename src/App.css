@@ -15,6 +15,7 @@
   --clr-grey-500: 186, 14%, 43%;
   --clr-grey-400: 184, 14%, 56%;
   --clr-grey-300: 184, 19%, 68%;
+  --clr-orange-400: 13, 70%, 60%;
   --clr-white: 0, 100%, 100%;
 
   /* Spacing */
@@ -24,6 +25,7 @@
   --spacing-400: 2rem;
   --spacing-500: 3rem;
   --spacing-600: 4rem;
+  --spacing-700: 5rem;
   --spacing-1200: 6rem;
 
   /* font-sizes */
@@ -194,6 +196,17 @@ input[type="number"]::-webkit-inner-spin-button {
   pointer-events: none;
 }
 
+.bill-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.error-text {
+  margin-bottom: var(--spacing-100);
+  color: hsl(var(--clr-orange-400));
+}
+
 input[type="number"] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
@@ -242,6 +255,8 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: var(--fs-700);
   color: hsl(var(--clr-white));
   background-color: hsl(var(--clr-green-900));
+  border: none;
+  outline: none;
   text-align: center;
   border-radius: 5px;
   font-weight: 600;
@@ -250,7 +265,8 @@ input[type="number"]::-webkit-inner-spin-button {
   transition: all 0.3s;
 }
 
-.tip-percentage:hover {
+.tip-percentage:hover,
+.tip-percentage:focus {
   color: hsl(var(--clr-green-900));
   background-color: hsl(var(--clr-green-200));
 }
@@ -261,6 +277,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .special {
+  padding: 4px;
   background-color: hsl(var(--clr-grey-50));
   color: hsl(var(--clr-grey-550));
 }
@@ -269,54 +286,15 @@ input[type="number"]::-webkit-inner-spin-button {
   background-color: hsl(var(--clr-grey-50));
   color: hsl(var(--clr-grey-550));
 }
-/* ********************* */
-/* Will see it later */
-/* ********************* */
 
-/* Error State (Optional) */
+/* Error State  */
 .bill-wrapper.error {
-  border-color: #e74c3c;
-  background-color: #fdf2f2;
+  border-color: hsl(var(--clr-orange-400));
 }
 
 .bill-wrapper.error:focus-within {
-  border-color: #e74c3c;
-  box-shadow: 0 0 0 1px #e74c3c;
+  border-color: hsl(var(--clr-orange-400));
 }
-
-/* Disabled State (Optional) */
-.bill-wrapper.disabled {
-  opacity: 0.6;
-  pointer-events: none;
-  background-color: #f0f2f3;
-}
-
-.input-field:disabled {
-  color: #9fb3b2;
-}
-
-/* Alternative: If you want hover effects */
-.bill-wrapper:hover:not(:focus-within) {
-  background-color: #ebf4f6;
-}
-
-/* Responsive Design */
-/* @media (max-width: 768px) {
-  .input-field {
-    font-size: 20px;
-    padding: 10px 12px 10px 6px;
-  }
-
-  .bill-wrapper {
-    min-height: 44px;
-  }
-
-  .bill-wrapper img {
-    margin-left: 12px;
-    width: 14px;
-    height: 14px;
-  }
-} */
 
 .display-container {
   background-color: hsl(var(--clr-green-900));
@@ -345,7 +323,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .actual-tip-amount {
   color: hsl(var(--clr-green-400));
-  font-size: var(--fs-900);
+  font-size: 2.5rem;
 }
 
 .tip-total {
@@ -368,8 +346,18 @@ input[type="number"]::-webkit-inner-spin-button {
   transition: all 0.3s;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
   background: hsl(var(--clr-green-200));
+}
+
+.disabled {
+  background-color: hsl(var(--clr-green-750));
+  color: hsl(var(--clr-green-800));
+}
+
+.disabled:hover {
+  background-color: hsl(var(--clr-green-750));
 }
 
 .tip-percentage-input {
@@ -393,4 +381,17 @@ input[type="number"]::-webkit-inner-spin-button {
   border: 2px solid hsl(var(--clr-green-400));
   background-color: hsl(var(--clr-white));
   outline: none;
+}
+
+/* Tip Calculator Responsive */
+@media (max-width: 810px) {
+  .tip-amount {
+    gap: 4.5rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .container {
+    flex-direction: column;
+  }
 }

@@ -13,20 +13,25 @@ function App() {
 
   // converting strings to numbers safely
   const bill = parseFloat(billAmount) || 0;
-  const people = parseInt(numOfPeople) || 1;
+  const people = parseInt(numOfPeople) || 0;
   const tipPercent = parseFloat(tipPercentage) || 0;
 
-  const totalTip = (bill * tipPercent) / 100;
-  const tipPerPerson = totalTip / people;
-  const totalWithTip = bill + totalTip;
-  const billPerPerson = totalWithTip / people;
+  let tipPerPerson = 0;
+  let billPerPerson = 0;
+
+  if (bill > 0 && people > 0) {
+    const totalTip = (bill * tipPercent) / 100;
+    tipPerPerson = totalTip / people;
+    const totalWithTip = bill + totalTip;
+    billPerPerson = totalWithTip / people;
+  }
 
   function handleReset() {
     setBillAmount("");
     setNumOfPeople("");
     setCustomTip("");
     setTipPercentage("");
-    customSelected(false);
+    setCustomSelected(false);
   }
 
   return (
@@ -39,7 +44,6 @@ function App() {
             setBillAmount={setBillAmount}
             numOfPeople={numOfPeople}
             setNumOfPeople={setNumOfPeople}
-            customTip={customTip}
             setCustomTip={setCustomTip}
             customSelected={customSelected}
             setCustomSelected={setCustomSelected}
@@ -50,6 +54,8 @@ function App() {
             tipPerPerson={tipPerPerson}
             billPerPerson={billPerPerson}
             onReset={handleReset}
+            bill={bill}
+            people={people}
           />
         </div>
       </div>

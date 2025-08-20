@@ -29,6 +29,7 @@ The Tip Calculator App lets users quickly calculate how much tip to leave based 
 ### Desktop View
 
 ![Desktop Screenshot](./src/images/desktop-view.png)
+![Mobile Screenshot](./src/images/mobile-view.png)
 
 ---
 
